@@ -4,7 +4,6 @@ import student.TestCase;
 /**
  * @author Aniket Adhikari
  * @version 04.19.2021
- *
  */
 public class StateTest {
     private LinkedList<Race> demographics;
