@@ -27,14 +27,26 @@ public class State {
     @Override
     public String toString()
     {
-        
+        StringBuilder sb = new StringBuilder();
+        sb.append(stateName + "\n");
+        sb.append("asian: \n");
+        sb.append("black: \n");
+        sb.append("latinx: \n");
+        sb.append("other: \n");
+        sb.append("white: \n");
+        return sb.toString();
     }
     
     public boolean equals()
     {
+        return false;
         
     }
     
+    /**
+     * 
+     * @return
+     */
     public String getStateName()
     {
         return this.stateName;
@@ -42,6 +54,7 @@ public class State {
     
     public LinkedList<Race> callSort()
     {
+        return raceList;
         
     }
 
