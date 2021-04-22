@@ -1,6 +1,7 @@
 package prj5;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements Iterable<T> {
 
@@ -116,10 +117,13 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
+    /**
+     * blah blah
+     */
     @Override
     public Iterator<T> iterator() {
 
-        return null;
+        return new LListIterator<T>(this);
     }
 
 
@@ -204,7 +208,55 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
-    public void sort(Comparator comp) {
+    public void sort(Comparator comp) 
+    {
+        
+    }
+    
+    private class LListIterator<T> implements Iterator<T> {
+        
+        private Node<T> current;
+        private LinkedList<T> list;
+        
+        /**
+         * 
+         * @param myList
+         */
+        public LListIterator(LinkedList<T> myList)
+        {
+            
+            current = list.head;
+            list = myList;
+        }
+        
+        /**
+         * 
+         */
+        @Override
+        public boolean hasNext() {
+            return current.next != null;
+        }
+
+        /**
+         * 
+         */
+        @Override
+        public T next() { 
+            if (hasNext())
+            {
+                
+                Node<T> returnNode = current.next();
+                current.next = current.next.next();
+                return returnNode.getData();
+            }
+            else
+            {
+                throw new NoSuchElementException("Illegal call to next(); "
+                    + "iterator is after end of list");
+
+            }
+        }
+
     }
 
 }
