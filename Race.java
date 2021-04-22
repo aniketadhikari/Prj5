@@ -78,4 +78,18 @@ public class Race {
         }
         return false;
     }
+
+
+    /**
+     * @return
+     */
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(raceName + ": ");
+        builder.append(numPositive + " cases, ");
+        builder.append(getCFR() + "% CFR");
+        String str = builder.toString().replace(".0", "");
+        return str;
+    }
+    
 }
