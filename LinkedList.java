@@ -2,6 +2,9 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import doublylinkedlist.DLList.DLListIterator;
+import doublylinkedlist.DLList.Node;
+import doublylinkedlist.DLList.RDLListIterator;
 
 public class LinkedList<T> implements Iterable<T> {
 
@@ -17,7 +20,6 @@ public class LinkedList<T> implements Iterable<T> {
      */
     private static class Node<E> {
         private Node<E> next;
-        private Node<E> previous;
         private E data;
 
         /**
@@ -42,16 +44,6 @@ public class LinkedList<T> implements Iterable<T> {
         }
 
 
-        /**
-         * Sets the node before this one
-         *
-         * @param n
-         *            the node before this one
-         */
-        public void setPrevious(Node<E> n) {
-            previous = n;
-        }
-
 
         /**
          * Gets the next node
@@ -62,15 +54,6 @@ public class LinkedList<T> implements Iterable<T> {
             return next;
         }
 
-
-        /**
-         * Gets the node before this one
-         *
-         * @return the node before this one
-         */
-        public Node<E> previous() {
-            return previous;
-        }
 
 
         /**
@@ -114,16 +97,7 @@ public class LinkedList<T> implements Iterable<T> {
         head.setNext(tail);
         tail.setPrevious(head);
         size = 0;
-    }
 
-
-    /**
-     * blah blah
-     */
-    @Override
-    public Iterator<T> iterator() {
-
-        return new LListIterator<T>(this);
     }
 
 
@@ -145,7 +119,7 @@ public class LinkedList<T> implements Iterable<T> {
 
             head = newNode;
         }
-        
+
         tail.setNext(newNode);
         tail = newNode;
 
@@ -208,51 +182,57 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
-    public void sort(Comparator comp) 
-    {
-        
+// compare
+    public LinkedList<T> sort(Comparator comp) {
+
+        Node<T> curr = head;
+        int compValue = comp.compare(curr.getData(), curr.next.getData());
+
+        // CF
     }
-    
-    private class LListIterator<T> implements Iterator<T> {
-        
-        private Node<T> current;
-        private LinkedList<T> list;
-        
-        /**
-         * 
-         * @param myList
-         */
-        public LListIterator(LinkedList<T> myList)
-        {
-            
-            current = list.head;
-            list = myList;
-        }
-        
-        /**
-         * 
-         */
-        @Override
-        public boolean hasNext() {
-            return current.next != null;
+    // In state, within statem we will have the race lise list.sort(comp)
+
+
+    /**
+     * Iterator method creates Iterator object
+     *
+     * @return new Iterator object
+     */
+    public Iterator<T> iterator() {
+
+        return new LinkedListIterator<T>();
+    }
+
+    private class LinkedListIterator<A> implements Iterator<T> {
+
+        private Node<T> curr;
+        private boolean isThere;
+
+        public LinkedListIterator() {
+            curr = head;
+            isThere = false;
         }
 
-        /**
-         * 
-         */
+
         @Override
-        public T next() { 
-            if (hasNext())
-            {
-                
-                Node<T> returnNode = current.next();
-                current.next = current.next.next();
-                return returnNode.getData();
+        public boolean hasNext() {
+            return curr.next.data != null;
+        }
+
+
+        @Override
+        public T next() {
+
+            if (hasNext()) {
+                haha = true;
+                Node<E> temp = current.next;
+
+                current = current.next;
+
+                return temp.data;
             }
-            else
-            {
-                throw new NoSuchElementException("Illegal call to next(); "
-                    + "iterator is after end of list");
+            else {
+                throw new NoSuchElementException();
 
             }
         }
