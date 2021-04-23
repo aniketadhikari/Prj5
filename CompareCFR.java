@@ -38,9 +38,9 @@ public class CompareCFR<T> implements Comparator<T> {
             return 0;
         }
         if (r1CFR < r2CFR) {
-            return -1;
+            return 1;
         }
-        return 1;
+        return -1;
     }
 
 }
