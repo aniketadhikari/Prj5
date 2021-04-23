@@ -14,6 +14,9 @@ public class CompareCFRTest extends TestCase {
     private Race human;
     private CompareCFR<Race> cfr;
     
+    /**
+     * Runs before every execution
+     */
     public void setUp()
     {
         cfr = new CompareCFR<Race>();
