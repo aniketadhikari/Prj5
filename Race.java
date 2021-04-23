@@ -1,7 +1,10 @@
+package prj5;
+import java.text.DecimalFormat;
+
 /**
  * 
  * @author Jenny Tran
- * @version 2021.04.20
+ * @version 04.23.2021
  */
 public class Race {
     private String raceName;
@@ -22,17 +25,20 @@ public class Race {
 
 
     /**
-     * 
-     * @return
+     * getter method for the name of the race
+     * @return the name of the race in lower 
+     *         case format
      */
     public String getRace() {
-        return raceName;
+        return raceName.toLowerCase();
     }
 
 
     /**
+     * getter method for people of a 
+     * specific race who died from COVID-19
      * 
-     * @return
+     * @return the number of people who died
      */
     public int getNumDeath() {
         return numDeath;
@@ -40,8 +46,10 @@ public class Race {
 
 
     /**
+     * getter method for the people of a specific
+     * race who were infected with COVID-19
      * 
-     * @return
+     * @return the number of people infected
      */
     public int getNumPositive() {
         return numPositive;
@@ -49,11 +57,24 @@ public class Race {
 
 
     /**
-     * 
-     * @return
+     * determines the CFR (Case Fatality Ratio), 
+     * which is equal to 
+     * (# of deaths due to COVID / # of total cases) * 100
+     * @return the CFR for the race 
      */
-    public double getCFR() {
-        return (numDeath / numPositive) * 100;
+    public double getCFR() 
+    {
+        double cfr = (double) this.getNumDeath() / this.getNumPositive() * 100;
+        return cfr;
+    }
+    
+    public String getCFRFormatted()
+    {
+        DecimalFormat df = new DecimalFormat("0.0");
+        double raceCFR = this.getCFR();
+        String result = df.format(raceCFR);
+        return result;
+        
     }
 
 
@@ -78,18 +99,15 @@ public class Race {
         }
         return false;
     }
-
-
-    /**
-     * @return
-     */
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(raceName + ": ");
-        builder.append(numPositive + " cases, ");
-        builder.append(getCFR() + "% CFR");
-        String str = builder.toString().replace(".0", "");
-        return str;
-    }
     
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.raceName);
+        sb.append(": " + getNumPositive() + " cases, ");
+        sb.append(getCFRFormatted() + "% CFR");
+        return sb.toString();
+        
+    }
 }
