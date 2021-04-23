@@ -3,6 +3,20 @@ package prj5;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * a data structure that contains many objects
+ * of the same type, where objects can be added,
+ * sorted, and completely cleared from the list itself.
+ * Each item is linked to each other through nodes
+ * 
+ * @author Aniket Adhikari
+ * @version 04.23.2021
+ * 
+ * @param <T>
+ *            the type of elements stored in the linked
+ *            list data structure
+ */
 public class LinkedList<T> implements Iterable<T> {
 
     /**
@@ -17,7 +31,6 @@ public class LinkedList<T> implements Iterable<T> {
      */
     private static class Node<E> {
         private Node<E> next;
-        private Node<E> previous;
         private E data;
 
         /**
@@ -43,33 +56,12 @@ public class LinkedList<T> implements Iterable<T> {
 
 
         /**
-         * Sets the node before this one
-         *
-         * @param n
-         *            the node before this one
-         */
-        public void setPrevious(Node<E> n) {
-            previous = n;
-        }
-
-
-        /**
          * Gets the next node
          *
          * @return the next node
          */
         public Node<E> next() {
             return next;
-        }
-
-
-        /**
-         * Gets the node before this one
-         *
-         * @return the node before this one
-         */
-        public Node<E> previous() {
-            return previous;
         }
 
 
@@ -112,18 +104,8 @@ public class LinkedList<T> implements Iterable<T> {
         head = new LinkedList.Node<T>(null);
         tail = new LinkedList.Node<T>(null);
         head.setNext(tail);
-        tail.setPrevious(head);
         size = 0;
-    }
 
-
-    /**
-     * blah blah
-     */
-    @Override
-    public Iterator<T> iterator() {
-
-        return new LListIterator<T>(this);
     }
 
 
@@ -145,7 +127,7 @@ public class LinkedList<T> implements Iterable<T> {
 
             head = newNode;
         }
-        
+
         tail.setNext(newNode);
         tail = newNode;
 
@@ -206,53 +188,111 @@ public class LinkedList<T> implements Iterable<T> {
         s.append("}");
         return s.toString();
     }
-
-
-    public void sort(Comparator comp) 
+    
+    /**
+     * 
+     * @param comp
+     * @return
+     */
+    public void sort(Comparator<T> comp)
     {
-        
+        if (size > 1)
+        {
+            Node<T> unsortedPart = head.next();
+            Node<T> sortedPart = head;
+            sortedPart.setNext(null);
+            
+            while (unsortedPart != null)
+            {
+                Node<T> nodeToInsert = unsortedPart;
+                unsortedPart = unsortedPart.next();
+                insertInOrder(nodeToInsert, comp);
+            }
+        }
     }
     
-    private class LListIterator<T> implements Iterator<T> {
+    private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp)
+    {
+        Node<T> currentNode = head;
+        Node<T> previousNode = null;
         
-        private Node<T> current;
-        private LinkedList<T> list;
-        
-        /**
-         * 
-         * @param myList
-         */
-        public LListIterator(LinkedList<T> myList)
+        while ((currentNode != null) && comp.compare(currentNode.getData(), nodeToInsert.getData()) < 0)
         {
-            
-            current = list.head;
-            list = myList;
+            previousNode = currentNode;
+            currentNode = currentNode.next();
         }
         
+        if (previousNode != null)
+        {
+            previousNode.setNext(nodeToInsert);
+            nodeToInsert.setNext(currentNode);
+        }
+        else
+        {
+            nodeToInsert.setNext(head);
+            head = nodeToInsert;
+        }
+    }
+
+
+    /**
+     * Iterator method creates Iterator object
+     *
+     * @return new Iterator object
+     */
+    public Iterator<T> iterator() {
+
+        return new LinkedListIterator<T>();
+    }
+
+    /**
+     * 
+     * @author Aniket Adhikari
+     *
+     * @param <A>
+     *            the type of elements returned by this
+     *            iterator
+     */
+    private class LinkedListIterator<A> implements Iterator<T> {
+
+        private Node<T> curr;
+
         /**
-         * 
+         * creates a LinkedListIterator
+         */
+        public LinkedListIterator() {
+            curr = head;
+        }
+
+
+        /**
+         * determines whether the iteration has more
+         * nodes in the linked list
          */
         @Override
         public boolean hasNext() {
-            return current.next != null;
+            return curr != null;
         }
 
+
         /**
+         * returns the next node in the linked list
+         * iteration
          * 
+         * @return the next node in the iteration
          */
         @Override
-        public T next() { 
-            if (hasNext())
-            {
-                
-                Node<T> returnNode = current.next();
-                current.next = current.next.next();
-                return returnNode.getData();
+        public T next() {
+
+            if (hasNext()) {
+                Node<T> temp = curr;
+
+                curr = curr.next;
+
+                return temp.data;
             }
-            else
-            {
-                throw new NoSuchElementException("Illegal call to next(); "
-                    + "iterator is after end of list");
+            else {
+                throw new NoSuchElementException();
 
             }
         }
