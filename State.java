@@ -35,43 +35,21 @@ public class State {
     @Override
     public String toString()
     {
-        Race asian = null;
-        Race black = null;
-        Race latinx = null;
-        Race other = null;
-        Race white = null;
-        Iterator<Race> iterList = raceList.iterator();
-        while (iterList.hasNext())
-        {
-            Race raceInQuestion = iterList.next();
-            switch (raceInQuestion.getRace())
-            {
-                case "asian":
-                    asian = raceInQuestion;
-                    break;
-                case "black":
-                    black = raceInQuestion;
-                    break;
-                case "latinx":
-                    latinx = raceInQuestion;
-                    break;
-                case "other":
-                    other = raceInQuestion;
-                    break;
-                case "white":
-                    white = raceInQuestion;
-                    break;
-            }
-        }
-        
         StringBuilder sb = new StringBuilder();
-        sb.append(stateName + " \n");
-        sb.append(asian.toString() + " \n");
-        sb.append(black.toString() + " \n");
-        sb.append(latinx.toString() + " \n");
-        sb.append(other.toString() + " \n");
-        sb.append(white.toString() + " \n");
-        
+        sb.append(stateName + "\n");
+        LinkedList<Race> alphaSorted = this.callSortAlpha();
+        Iterator<Race> alphaIter = alphaSorted.iterator();
+        while (alphaIter.hasNext())
+        {
+            sb.append(alphaIter.next() + " \n");
+        }
+        sb.append("===== \n");
+        LinkedList<Race> cfrSorted = this.callSortCFR();
+        Iterator<Race> cfrIter = cfrSorted.iterator();
+        while (cfrIter.hasNext())
+        {
+            sb.append(cfrIter.next() + " \n");
+        }
         return sb.toString();
        
     }
