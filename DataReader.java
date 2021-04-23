@@ -5,9 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * 
+ * Reads the file input and creates the output in
+ * which there is a breakdown of COVID-19 effects
+ * on certain demographics of each state, including
+ * cases, deaths, and CFR for each race.
+ *
  * @author Jenny Tran
- * @version 2021.04.23 v2
+ * @version 2021.04.23 
  */
 public class DataReader {
 
@@ -15,8 +19,11 @@ public class DataReader {
     private LinkedList<State> stateList;
 
     /**
+     * Creates a DataReader 
      * 
-     * @param fileName
+     * @param fileName is the name of the file that contains 
+     * the states and the effects COVID has had on each 
+     * demographic
      */
     public DataReader(String fileName) {
         races = new LinkedList<Race>();
@@ -26,7 +33,7 @@ public class DataReader {
 
     /**
      * 
-     * @param file
+     * @param file 
      * @return
      */
     private LinkedList<State> readDataFile(String fileName)
