@@ -1,18 +1,25 @@
+/**
+ * 
+ */
 package prj5;
+
 import java.io.FileNotFoundException;
 
+/**
+ * @author 15407
+ *
+ */
 public class Input {
 
-    public static void main(String[] strings) throws FileNotFoundException {
-        
-        if (strings.length == 1)
-        {
-            DataReader reader = new DataReader(strings[0]);
-        }
-        else
-        {
-            DataReader reader = new DataReader("Cases_and_Deaths_by_race_CRDT_Sep2020");
-        }
+    /**
+     * @param args
+     * @throws FileNotFoundException
+     */
+    public static void main(String[] args) throws FileNotFoundException {
+
+        DataReader dR = new DataReader();
+
+        dR.getLLState("Cases_and_Deaths_by_race_CRDT_Sep2020 (3).csv");
     }
 
 }
