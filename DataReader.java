@@ -17,10 +17,18 @@ public class DataReader {
     /**
      * 
      * @param fileName
+     * @throws FileNotFoundException
      */
-    public DataReader(String fileName) {
+    public DataReader() throws FileNotFoundException {
         races = new LinkedList<Race>();
         stateList = new LinkedList<State>();
+
+    }
+
+
+    public LinkedList<State> getLLState(String fileName)
+        throws FileNotFoundException {
+        return readDataFile(fileName);
     }
 
 
@@ -29,12 +37,16 @@ public class DataReader {
      * @param file
      * @return
      */
+    @SuppressWarnings("unused")
     private LinkedList<State> readDataFile(String fileName)
         throws FileNotFoundException {
         File input = new File(fileName);
         Scanner scan = new Scanner(input);
+
+        // to ignore first line
         scan.nextLine();
-        for (int i = 0; scan.hasNext(); i++) {
+
+        for (int i = 0; scan.hasNextLine(); i++) {
             String[] parsedLine = scan.nextLine().split(", *");
 
             int[] data = new int[parsedLine.length];
@@ -48,16 +60,12 @@ public class DataReader {
                     data[j] = Integer.valueOf(parsedLine[j]);
                 }
             }
-            Race white = new Race("white", Integer.valueOf(parsedLine[6]),
-                Integer.valueOf(parsedLine[1]));
-            Race black = new Race("black", Integer.valueOf(parsedLine[7]),
-                Integer.valueOf(parsedLine[2]));
-            Race latinx = new Race("latinx", Integer.valueOf(parsedLine[8]),
-                Integer.valueOf(parsedLine[3]));
-            Race asian = new Race("asian", Integer.valueOf(parsedLine[9]),
-                Integer.valueOf(parsedLine[4]));
-            Race other = new Race("other", Integer.valueOf(parsedLine[10]),
-                Integer.valueOf(parsedLine[5]));
+            Race white = new Race("white", data[6], data[1]);
+            Race black = new Race("black", data[7], data[2]);
+            Race latinx = new Race("latinx", data[8], data[3]);
+            Race asian = new Race("asian", data[9], data[4]);
+            Race other = new Race("other", data[10], data[5]);
+
             races.add(white);
             races.add(black);
             races.add(latinx);
