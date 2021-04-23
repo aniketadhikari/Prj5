@@ -5,14 +5,17 @@ import student.TestCase;
  * Test class for the CompareAlpha class
  * 
  * @author Aniket Adhikari
- * @version 04.20.2021 v1
+ * @version 04.23.2021 
  *
  */
 public class CompareAlphaTest extends TestCase {
-    Race alien;
-    Race human;
-    CompareAlpha<Race> alpha;
+    private Race alien;
+    private Race human;
+    private CompareAlpha<Race> alpha;
     
+    /**
+     * Runs before every execution
+     */
     public void setUp()
     {
         alien = new Race("Alien", 100, 500);
@@ -59,5 +62,44 @@ public class CompareAlphaTest extends TestCase {
     {
         Race lowerCaseHuman = new Race("hUmAn", 100, 500);
         assertEquals(0, alpha.compare(human, lowerCaseHuman));
+    }
+    
+    /**
+     * tests the compare method when the first parameter 
+     * is null
+     */
+    public void testCompareFirstNull()
+    {
+        Exception thrown = null;
+        try
+        {
+            alpha.compare(null, alien);
+        }
+        catch(Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof IllegalArgumentException);
+        assertEquals(thrown.getMessage(), "One of the parameters"
+            + "has not been initialized");
+    }
+    /**
+     * tests the compare method when the first parameter 
+     * is null
+     */
+    public void testCompareSecondNull()
+    {
+        Exception thrown = null;
+        try
+        {
+            alpha.compare(alien, null);
+        }
+        catch(Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof IllegalArgumentException);
+        assertEquals(thrown.getMessage(), "One of the parameters"
+            + "has not been initialized");
     }
 }
