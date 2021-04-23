@@ -2,9 +2,10 @@ package prj5;
 import student.TestCase;
 
 /**
+* Test class for the CompareCFR class
 * 
 * @author Aniket Adhikari
-* @version 04.22.2021 v1
+* @version 04.23.2021 v2
 *
 */
 public class CompareCFRTest extends TestCase {
@@ -49,6 +50,45 @@ public class CompareCFRTest extends TestCase {
     {
         Race alienCopy = new Race("Alien Copy", 120, 352);
         assertEquals(0, cfr.compare(alien, alienCopy));
+    }
+    
+    /**
+     * tests the compare method when the first parameter 
+     * is null
+     */
+    public void testCompareFirstNull()
+    {
+        Exception thrown = null;
+        try
+        {
+            cfr.compare(null, alien);
+        }
+        catch(Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof IllegalArgumentException);
+        assertEquals(thrown.getMessage(), "One of the parameters"
+            + "has not been initialized");
+    }
+    /**
+     * tests the compare method when the first parameter 
+     * is null
+     */
+    public void testCompareSecondNull()
+    {
+        Exception thrown = null;
+        try
+        {
+            cfr.compare(alien, null);
+        }
+        catch(Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof IllegalArgumentException);
+        assertEquals(thrown.getMessage(), "One of the parameters"
+            + "has not been initialized");
     }
 
 }
