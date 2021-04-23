@@ -19,16 +19,16 @@ public class DataReader {
      * @param fileName
      * @throws FileNotFoundException
      */
-    public DataReader() throws FileNotFoundException {
+    public DataReader(String fileName) throws FileNotFoundException {
         races = new LinkedList<Race>();
         stateList = new LinkedList<State>();
+        stateList = readDataFile(fileName);
 
     }
 
 
-    public LinkedList<State> getLLState(String fileName)
-        throws FileNotFoundException {
-        return readDataFile(fileName);
+    public LinkedList<State> getState() {
+        return stateList;
     }
 
 
@@ -40,13 +40,14 @@ public class DataReader {
     @SuppressWarnings("unused")
     private LinkedList<State> readDataFile(String fileName)
         throws FileNotFoundException {
+
         File input = new File(fileName);
         Scanner scan = new Scanner(input);
 
         // to ignore first line
         scan.nextLine();
 
-        for (int i = 0; scan.hasNextLine(); i++) {
+        while (scan.hasNextLine()) {
             String[] parsedLine = scan.nextLine().split(", *");
 
             int[] data = new int[parsedLine.length];
