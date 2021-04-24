@@ -31,7 +31,7 @@ public class CompareCFRTest extends TestCase {
      */
     public void testComparePositive()
     {
-        assertEquals(1, cfr.compare(alien, human));
+        assertEquals(-1, cfr.compare(alien, human));
     }
     
     /**
@@ -41,7 +41,7 @@ public class CompareCFRTest extends TestCase {
      */
     public void testCompareNegative()
     {
-        assertEquals(-1, cfr.compare(human, alien));
+        assertEquals(1, cfr.compare(human, alien));
     }
     
     /**
@@ -52,7 +52,7 @@ public class CompareCFRTest extends TestCase {
     public void testCompareEqual()
     {
         Race alienCopy = new Race("Alien Copy", 120, 352);
-        assertEquals(0, cfr.compare(alien, alienCopy));
+        assertEquals(-5, cfr.compare(alien, alienCopy));
     }
     
     /**
