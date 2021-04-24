@@ -45,7 +45,7 @@ public class RaceTest extends TestCase {
      * Tests if getter method returns CFR percent
      */
     public void testGetCFR() {
-        assertEquals(10.0, race.getCFR());
+        assertEquals(10.0, race.getCFR(), 0.1);
     }
 
 
@@ -59,7 +59,7 @@ public class RaceTest extends TestCase {
         Race black = new Race("black", 1000, 10000);
 
         assertEquals(race, race);
-        assertEquals(race, asian1);
+        assertTrue(race.equals(asian1));
         assertEquals(false, race.equals(black));
         assertEquals(false, race.equals(new Object()));
         assertEquals(false, race.equals(asian2));
