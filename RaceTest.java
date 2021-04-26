@@ -1,3 +1,5 @@
+package prj5;
+
 import student.TestCase;
 
 /**
@@ -7,7 +9,7 @@ import student.TestCase;
  * @version 2021.04.20
  */
 public class RaceTest extends TestCase {
-    Race race;
+    private Race race;
 
     /**
      * Sets up test methods
@@ -46,6 +48,12 @@ public class RaceTest extends TestCase {
      */
     public void testGetCFR() {
         assertEquals(10.0, race.getCFR(), 0.1);
+
+        Race race2 = new Race("people", -1, 54);
+        assertEquals(race2.getCFR(), -1.0, 0.1);
+        race2 = new Race("people", 12, -1);
+        assertEquals(race2.getCFR(), -1.0, 0.1);
+
     }
 
 
@@ -60,10 +68,20 @@ public class RaceTest extends TestCase {
 
         assertEquals(race, race);
         assertTrue(race.equals(asian1));
-        assertEquals(false, race.equals(black));
-        assertEquals(false, race.equals(new Object()));
-        assertEquals(false, race.equals(asian2));
-        assertEquals(false, race.equals(asian3));
+        assertFalse(race.equals(black));
+        assertFalse(race.equals(new Object()));
+        assertFalse(race.equals(asian2));
+        assertFalse(race.equals(asian3));
+
+        Race race2 = null;
+
+        assertFalse(race.equals(race2));
+
+        assertFalse(race.equals(new Object()));
+
+        race2 = race;
+
+        assertTrue(race.equals(race2));
     }
 
 
@@ -71,7 +89,7 @@ public class RaceTest extends TestCase {
      * Tests if correct string format of race is returned
      */
     public void testToString() {
-        assertEquals("asian: 5000 cases, 10.0% CFR", race.toString());
+        assertEquals("asian: 5000 cases, 10% CFR", race.toString());
     }
 
 }
