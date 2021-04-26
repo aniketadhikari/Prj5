@@ -7,14 +7,20 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 /**
- * @author 15407
- *
+ * Project Runner
+ * 
+ * @author Jenny Tran
+ * @version 2021.04.23
  */
 public class Input {
 
     /**
+     * Main method to run the project
+     * 
      * @param args
+     *            the file passed in
      * @throws FileNotFoundException
+     *             if file cannot be found
      */
     public static void main(String[] args) throws FileNotFoundException {
 
