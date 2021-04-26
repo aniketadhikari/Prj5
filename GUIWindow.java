@@ -26,26 +26,40 @@ public class GUIWindow {
     private Button vaStats;
     private LinkedList<State> stateList;
     private DataReader reader;
-    private int width;
-    private int height;
+    private final static int WIDTH = 500;
+    private final static int HEIGHT = 500;
+    private final static int HISTOGRAM_SPACE = 10;
+    private final static int HISTOGRAM_WIDTH = 10;
+    private Shape asian;
+    private Shape black;
+    private Shape latinx;
+    private Shape other;
+    private Shape white;
     
     /**
-     * 
+     * Creates a GUI Window consisting of sorting buttons,
+     * a quit button, and buttons to view COVID statistics for 
+     * each state
      */
     public GUIWindow()
     {
+        
         // create alpha sort
         window = new Window("COVID Project");
+        window.setSize(WIDTH, HEIGHT);
         alphaSort = new Button("Sort by Alpha");
         alphaSort.onClick(this, "clickedSortAlpha");
-        // create quit 
+        alphaSort.setForegroundColor(Color.blue);
         window.addButton(alphaSort, WindowSide.NORTH);
+        // create quit 
         quit = new Button("Quit");
         quit.onClick(this, "clickedQuit");
+        quit.setForegroundColor(Color.red);
         window.addButton(quit, WindowSide.NORTH);
         // create CFR sort
         cfrSort = new Button("Sort by CFR");
         cfrSort.onClick(this, "clickedSortCFR");
+        cfrSort.setForegroundColor(Color.green);
         window.addButton(cfrSort, WindowSide.NORTH);
         // create DC
         dcStats = new Button("Represent DC");
@@ -88,42 +102,72 @@ public class GUIWindow {
         
     }
     
-    public void clickedDC(Button dc)
-    {
-        
+    /**
+     * 
+     * @param button
+     */
+    public void clickedDC(Button button) {
+        asian = new Shape(50, 50, HISTOGRAM_WIDTH, Color.BLUE);
+        black = new Shape(asian.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
+        latinx = new Shape(black.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
+        other = new Shape(latinx.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
+        white = new Shape(other.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
+        window.addShape(asian);
+        window.addShape(black);
+        window.addShape(latinx);
+        window.addShape(other);
+        window.addShape(white);
     }
     
-    public void clickedGA(Button dc)
+    /**
+     * Displays Georgia's COVID data
+     * @param button
+     */
+    public void clickedGA(Button button)
     {
-        
+        State ga = stateList.getEntry(1);
+        update(ga);
     }
     
-    public void clickedMD(Button dc)
+    /**
+     * Displays Maryland's COVID data
+     * @param button
+     */
+    public void clickedMD(Button button)
     {
-        
+        State md = stateList.getEntry(2);
+        update(md);
     }
     
-    public void clickedNC(Button dc)
+    /**
+     * Displays North Carolina's COVID data
+     * @param button
+     */
+    public void clickedNC(Button button)
     {
-        
+        State nc = stateList.getEntry(3);
+        update(nc);
     }
     
-    public void clickedTN(Button dc)
+    /**
+     * Displays Tennessee's COVID data
+     * @param button
+     */
+    public void clickedTN(Button button)
     {
-        
+        State tn = stateList.getEntry(4);
+        update(tn);
     }
     
     public void clickedVA(Button dc)
     {
-        
+        State va = stateList.getEntry(5);
+        update(va);
     }
     
-    public void update()
+    public void update(State state)
     {
         
     }
-    
-    
-    
     
 }
