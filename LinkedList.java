@@ -92,6 +92,9 @@ public class LinkedList<T> implements Iterable<T> {
      */
     private Node<T> tail;
 
+    /**
+     * Creates a linkedlist object
+     */
     public LinkedList() {
         init();
     }
@@ -188,47 +191,52 @@ public class LinkedList<T> implements Iterable<T> {
         s.append("}");
         return s.toString();
     }
-    
+
+
     /**
+     * Insertion sorting method
      * 
      * @param comp
-     * @return
+     *            comparator
      */
-    public void sort(Comparator<T> comp)
-    {
-        if (size > 1)
-        {
+    public void sort(Comparator<T> comp) {
+        if (size > 1) {
             Node<T> unsortedPart = head.next();
             Node<T> sortedPart = head;
             sortedPart.setNext(null);
-            
-            while (unsortedPart != null)
-            {
+
+            while (unsortedPart != null) {
                 Node<T> nodeToInsert = unsortedPart;
                 unsortedPart = unsortedPart.next();
                 insertInOrder(nodeToInsert, comp);
             }
         }
     }
-    
-    private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp)
-    {
+
+
+    /**
+     * Helper method to sort in order traversal
+     * 
+     * @param nodeToInsert
+     *            node being inserted
+     * @param comp
+     *            comparator
+     */
+    private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp) {
         Node<T> currentNode = head;
         Node<T> previousNode = null;
-        
-        while ((currentNode != null) && comp.compare(currentNode.getData(), nodeToInsert.getData()) < 0)
-        {
+
+        while ((currentNode != null) && comp.compare(currentNode.getData(),
+            nodeToInsert.getData()) < 0) {
             previousNode = currentNode;
             currentNode = currentNode.next();
         }
-        
-        if (previousNode != null)
-        {
+
+        if (previousNode != null) {
             previousNode.setNext(nodeToInsert);
             nodeToInsert.setNext(currentNode);
         }
-        else
-        {
+        else {
             nodeToInsert.setNext(head);
             head = nodeToInsert;
         }
