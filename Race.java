@@ -1,3 +1,4 @@
+package prj5;
 
 import java.text.DecimalFormat;
 
@@ -7,7 +8,7 @@ import java.text.DecimalFormat;
  * each group (white, black, latinX, asian, other)
  * 
  * @author Jenny Tran
- * @version 2021.04.20
+ * @version 04.23.2021
  */
 public class Race {
     private String raceName;
@@ -33,17 +34,19 @@ public class Race {
 
 
     /**
-     * Getter method for the name of race
+     * getter method for the name of the race
      * 
-     * @return the name of the race in lowercase format
+     * @return the name of the race in lower
+     *         case format
      */
     public String getRace() {
-        return raceName;
+        return raceName.toLowerCase();
     }
 
 
     /**
-     * Getter method for the number of COVID-19 deaths for a specific race
+     * getter method for people of a
+     * specific race who died from COVID-19
      * 
      * @return the number of people who died
      */
@@ -53,10 +56,10 @@ public class Race {
 
 
     /**
-     * Getter method for the number of COVID-19 positive cases for a specific
-     * race
+     * getter method for the people of a specific
+     * race who were infected with COVID-19
      * 
-     * @return the number of positive cases
+     * @return the number of people infected
      */
     public int getNumPositive() {
         return numPositive;
@@ -64,15 +67,18 @@ public class Race {
 
 
     /**
-     * Determines the CFR (Case Fatality Ratio),
+     * determines the CFR (Case Fatality Ratio),
      * which is equal to
      * (# of deaths due to COVID / # of total cases) * 100
      * 
-     * @return The CFR for the race
+     * @return the CFR for the race
      */
     public double getCFR() {
+        if (this.getNumDeath() == -1 || this.getNumPositive() == -1) {
+            return -1.0;
+        }
         double cfr = (double)this.getNumDeath() / this.getNumPositive() * 100;
-        return Math.round(cfr * 100.0) / 100.0;
+        return cfr;
     }
 
 
@@ -82,7 +88,7 @@ public class Race {
      * @return string of CFR
      */
     public String getCFRFormatted() {
-        DecimalFormat df = new DecimalFormat("0.0");
+        DecimalFormat df = new DecimalFormat("0.#");
         double raceCFR = this.getCFR();
         String result = df.format(raceCFR);
         return result;
@@ -97,36 +103,37 @@ public class Race {
      *            race to be compared to
      * @return true if equals, false otherwise
      */
-    public boolean equals(Race other) {
-        boolean b = false;
+    @Override
+    public boolean equals(Object other) {
         if (this == other) {
-            b = true;
+            return true;
         }
         if (other == null) {
-            b = false;
+            return false;
         }
-        if (this.getClass() != other.getClass()) {
-            b = false;
+        if (other.getClass() != this.getClass())
+        {
+            return false;
         }
-        if (other.getRace().equals(raceName) && other.getNumDeath() == numDeath
-            && other.getNumPositive() == numPositive) {
-            b = true;
-        }
-        return b;
+        Race race = (Race)other;
+        return (race.getRace().equals(raceName) && race
+            .getNumDeath() == numDeath && race
+                .getNumPositive() == numPositive);
     }
 
 
     /**
-     * Converts race into the string format: "asian: 5407 cases, 4.7% CFR"
+     * * Converts race into the string format: "asian: 5407 cases, 4.7% CFR"
      * 
      * @return String format of Race
      */
+    @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(raceName + ": ");
-        builder.append(numPositive + " cases, ");
-        builder.append(getCFRFormatted() + "% CFR");
-        return builder.toString();
-    }
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.raceName);
+        sb.append(": " + getNumPositive() + " cases, ");
+        sb.append(getCFRFormatted() + "% CFR");
+        return sb.toString();
 
+    }
 }
