@@ -7,8 +7,8 @@ import student.TestCase;
 /**
  * Test class for LinkedList
  * 
- * @author Jenny Tran
- * @version 2021.04.23
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  */
 public class LinkedListTest extends TestCase {
 
