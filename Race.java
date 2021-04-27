@@ -7,8 +7,8 @@ import java.text.DecimalFormat;
  * number of COVID-19 cases, number of COVID related deaths, and the CFR from
  * each group (white, black, latinX, asian, other)
  * 
- * @author Jenny Tran
- * @version 04.23.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  */
 public class Race {
     private String raceName;
@@ -111,14 +111,12 @@ public class Race {
         if (other == null) {
             return false;
         }
-        if (other.getClass() != this.getClass())
-        {
+        if (other.getClass() != this.getClass()) {
             return false;
         }
         Race race = (Race)other;
         return (race.getRace().equals(raceName) && race
-            .getNumDeath() == numDeath && race
-                .getNumPositive() == numPositive);
+            .getNumDeath() == numDeath && race.getNumPositive() == numPositive);
     }
 
 
