@@ -9,9 +9,10 @@ import cs2.Window;
 import cs2.WindowSide;
 
 /**
+ * Front-End of the project that displays our data into buttons.
  * 
- * @author Aniket Adhikari
- * @version 04.26.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  *
  */
 public class GUIWindow {
@@ -100,11 +101,23 @@ public class GUIWindow {
     }
 
 
+    /**
+     * Exit window when quit button is clicked
+     * 
+     * @param button
+     *            quit
+     */
     public void clickedQuit(Button button) {
         System.exit(0);
     }
 
 
+    /**
+     * Button to sort the data in alphabetical order
+     * 
+     * @param sort
+     *            in alphabetical order
+     */
     public void clickedSortAlpha(Button sort) {
 
         currentState.callSortAlpha();
@@ -112,6 +125,12 @@ public class GUIWindow {
     }
 
 
+    /**
+     * Button to sort the data by CFR
+     * 
+     * @param sort
+     *            by CFR
+     */
     public void clickedSortCFR(Button sort) {
 
         currentState.callSortCFR();
@@ -120,8 +139,10 @@ public class GUIWindow {
 
 
     /**
+     * Display's DC's COVID data
      * 
      * @param button
+     *            DC
      */
     public void clickedDC(Button button) {
         State dc = stateList.getEntry(0);
@@ -134,6 +155,7 @@ public class GUIWindow {
      * Displays Georgia's COVID data
      * 
      * @param button
+     *            GA
      */
     public void clickedGA(Button button) {
         State ga = stateList.getEntry(1);
@@ -147,6 +169,7 @@ public class GUIWindow {
      * Displays Maryland's COVID data
      * 
      * @param button
+     *            MD
      */
     public void clickedMD(Button button) {
         State md = stateList.getEntry(2);
@@ -159,6 +182,7 @@ public class GUIWindow {
      * Displays North Carolina's COVID data
      * 
      * @param button
+     *            NC
      */
     public void clickedNC(Button button) {
         State nc = stateList.getEntry(3);
@@ -171,6 +195,7 @@ public class GUIWindow {
      * Displays Tennessee's COVID data
      * 
      * @param button
+     *            TN
      */
     public void clickedTN(Button button) {
         State tn = stateList.getEntry(4);
@@ -183,6 +208,7 @@ public class GUIWindow {
      * Displays Virginia's COVID data
      * 
      * @param button
+     *            VA
      */
     public void clickedVA(Button dc) {
         State va = stateList.getEntry(5);
@@ -191,6 +217,12 @@ public class GUIWindow {
     }
 
 
+    /**
+     * Updates a histogram based on the state's CFR
+     * 
+     * @param raceList
+     *            list of races within each state list
+     */
     public void createHistogram(LinkedList<Race> raceList) {
 
         // remove current data from the screen
@@ -216,10 +248,10 @@ public class GUIWindow {
             else {
                 // ATTENTION
                 // Add textRace and textCFR HERE
-                textRace[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 300, race.getRace());
-                textCFR[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 320, race.getCFRFormatted() + "%");
+                textRace[i] = new TextShape((window.getGraphPanelWidth() / 6)
+                    * (i + 1), 300, race.getRace());
+                textCFR[i] = new TextShape((window.getGraphPanelWidth() / 6)
+                    * (i + 1), 320, race.getCFRFormatted() + "%");
 
                 // create the histogram
                 shapes[i] = new Shape((window.getGraphPanelWidth() / 6) * (i
