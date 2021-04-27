@@ -29,7 +29,7 @@ public class GUIWindow {
     private final static int WIDTH = 500;
     private final static int HEIGHT = 500;
     private final static int HISTOGRAM_WIDTH = 40;
-    private final static int HEIGHT_FACTOR = 30;
+    private final static int HEIGHT_FACTOR = 3;
     private final static int Y_BASE = 300;
     private State currentState;
     private Shape[] shapes;
@@ -202,6 +202,8 @@ public class GUIWindow {
             // removes the shape if it's already on the screen
             if (shapes[i] != null) {
                 window.removeShape(shapes[i]);
+                window.removeShape(textRace[i]);
+                window.removeShape(textCFR[i]);
             }
 
             Race race = iter.next();
@@ -214,6 +216,10 @@ public class GUIWindow {
             else {
                 // ATTENTION
                 // Add textRace and textCFR HERE
+                textRace[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
+                    + 1), 300, race.getRace());
+                textCFR[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
+                    + 1), 320, race.getCFRFormatted() + "%");
 
                 // create the histogram
                 shapes[i] = new Shape((window.getGraphPanelWidth() / 6) * (i
@@ -223,6 +229,8 @@ public class GUIWindow {
 
             }
             window.addShape(shapes[i]);
+            window.addShape(textRace[i]);
+            window.addShape(textCFR[i]);
 
         }
 
