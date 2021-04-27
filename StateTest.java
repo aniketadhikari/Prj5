@@ -5,8 +5,8 @@ import student.TestCase;
 /**
  * Tests methods within State Class
  * 
- * @author Aniket Adhikari
- * @version 04.19.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  */
 public class StateTest extends TestCase {
     private LinkedList<Race> demographics;
