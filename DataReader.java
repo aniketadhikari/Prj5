@@ -27,7 +27,7 @@ public class DataReader {
 
         stateList = new LinkedList<State>();
         stateList = readDataFile(fileName);
-
+        new GUIWindow(stateList);
     }
 
 
@@ -58,7 +58,7 @@ public class DataReader {
         // to ignore first line
         scan.nextLine();
 
-        for (int i = 0; i < 6; i++) {
+        while (scan.hasNext()) {
             String[] parsedLine = scan.nextLine().split(", *");
 
             int[] data = new int[parsedLine.length];

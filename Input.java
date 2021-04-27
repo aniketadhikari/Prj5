@@ -32,13 +32,13 @@ public class Input {
             dR = new DataReader("Cases_and_Deaths_by_race_RANDOM_NUMBERS.csv");
 
         }
-        LinkedList<State> states = dR.getState();
-
-        Iterator<State> statesIter = states.iterator();
-        while (statesIter.hasNext()) {
-
-            System.out.println(statesIter.next().toString());
-        }
+//        LinkedList<State> states = dR.getState();
+//
+//        Iterator<State> statesIter = states.iterator();
+//        while (statesIter.hasNext()) {
+//
+//            System.out.println(statesIter.next().toString());
+//        }
     }
 
 }
