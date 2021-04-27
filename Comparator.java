@@ -4,8 +4,8 @@ package prj5;
  * An interface that is used to order certain objects
  * of our classes by comparing two objects
  * 
- * @author Aniket Adhikari
- * @version 04.23.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  * 
  * @param <T>
  *            the type of objects that may be
