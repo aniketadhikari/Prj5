@@ -5,8 +5,8 @@ import student.TestCase;
 /**
  * Tests methods for Race Class
  * 
- * @author Jenny Tran
- * @version 2021.04.20
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  */
 public class RaceTest extends TestCase {
     private Race race;
