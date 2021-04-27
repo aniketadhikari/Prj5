@@ -8,8 +8,8 @@ import java.util.Scanner;
  * DataReader utilizes .csv file to create States in which COVID effects on
  * specific races are measured
  * 
- * @author Jenny Tran
- * @version 2021.04.23 v2
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  */
 public class DataReader {
 
