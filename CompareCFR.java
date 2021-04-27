@@ -5,8 +5,8 @@ package prj5;
  * the user with a way of comparing the CFR
  * of Race objects
  * 
- * @author Aniket Adhikari
- * @version 04.23.2021 v2
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  *
  * @param <T>
  *            the type of objects that may be
