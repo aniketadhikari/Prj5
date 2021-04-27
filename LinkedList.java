@@ -3,6 +3,7 @@ package prj5;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
 /**
  * 
  * a data structure that contains many objects
@@ -92,9 +93,6 @@ public class LinkedList<T> implements Iterable<T> {
      */
     private Node<T> tail;
 
-    /**
-     * Creates a linkedlist object
-     */
     public LinkedList() {
         init();
     }
@@ -194,10 +192,9 @@ public class LinkedList<T> implements Iterable<T> {
 
 
     /**
-     * Insertion sorting method
      * 
      * @param comp
-     *            comparator
+     * @return
      */
     public void sort(Comparator<T> comp) {
         if (size > 1) {
@@ -214,14 +211,6 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
-    /**
-     * Helper method to sort in order traversal
-     * 
-     * @param nodeToInsert
-     *            node being inserted
-     * @param comp
-     *            comparator
-     */
     private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp) {
         Node<T> currentNode = head;
         Node<T> previousNode = null;
@@ -240,6 +229,37 @@ public class LinkedList<T> implements Iterable<T> {
             nodeToInsert.setNext(head);
             head = nodeToInsert;
         }
+    }
+
+
+    /**
+     * Gets the object at the given position
+     *
+     * @param index
+     *            where the object is located
+     * @return The object at the given position
+     * @throws IndexOutOfBoundsException
+     *             if no node at the given index
+     */
+
+    public T getEntry(int index) {
+        Node<T> current = head;
+        int currentIndex = 0;
+        T data = null;
+        while (current != null) {
+            if (currentIndex == index) {
+                data = current.data;
+            }
+            currentIndex++;
+            current = current.next;
+        }
+
+        // check if the data was null...
+        if (data == null) {
+            // ... if so throw an exception
+            throw new IndexOutOfBoundsException("Index exceeds the size.");
+        }
+        return data;
     }
 
 
