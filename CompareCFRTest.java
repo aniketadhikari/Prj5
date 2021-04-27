@@ -5,8 +5,8 @@ import student.TestCase;
 /**
  * Test class for the CompareCFR class
  * 
- * @author Aniket Adhikari
- * @version 04.23.2021 v2
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  *
  */
 public class CompareCFRTest extends TestCase {
