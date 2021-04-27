@@ -3,7 +3,6 @@ package prj5;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 /**
  * 
  * a data structure that contains many objects
@@ -11,8 +10,8 @@ import java.util.NoSuchElementException;
  * sorted, and completely cleared from the list itself.
  * Each item is linked to each other through nodes
  * 
- * @author Aniket Adhikari
- * @version 04.23.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  * 
  * @param <T>
  *            the type of elements stored in the linked
