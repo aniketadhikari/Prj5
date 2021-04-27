@@ -1,7 +1,8 @@
 package prj5;
+
 import java.awt.Color;
+import java.util.Iterator;
 import cs2.Button;
-import cs2.CircleShape;
 import cs2.Shape;
 import cs2.TextShape;
 import cs2.Window;
@@ -18,32 +19,30 @@ public class GUIWindow {
     private Button alphaSort;
     private Button cfrSort;
     private Button quit;
-    private Button dcStats; 
+    private Button dcStats;
     private Button gaStats;
     private Button mdStats;
     private Button ncStats;
     private Button tnStats;
     private Button vaStats;
     private LinkedList<State> stateList;
-    private DataReader reader;
     private final static int WIDTH = 500;
     private final static int HEIGHT = 500;
-    private final static int HISTOGRAM_SPACE = 10;
-    private final static int HISTOGRAM_WIDTH = 10;
-    private Shape asian;
-    private Shape black;
-    private Shape latinx;
-    private Shape other;
-    private Shape white;
-    
+    private final static int HISTOGRAM_WIDTH = 40;
+    private final static int HEIGHT_FACTOR = 30;
+    private final static int Y_BASE = 300;
+    private State currentState;
+    private Shape[] shapes;
+    private TextShape[] textRace;
+    private TextShape[] textCFR;
+
     /**
      * Creates a GUI Window consisting of sorting buttons,
-     * a quit button, and buttons to view COVID statistics for 
+     * a quit button, and buttons to view COVID statistics for
      * each state
      */
-    public GUIWindow()
-    {
-        
+    public GUIWindow(LinkedList<State> stateList) {
+
         // create alpha sort
         window = new Window("COVID Project");
         window.setSize(WIDTH, HEIGHT);
@@ -51,7 +50,7 @@ public class GUIWindow {
         alphaSort.onClick(this, "clickedSortAlpha");
         alphaSort.setForegroundColor(Color.blue);
         window.addButton(alphaSort, WindowSide.NORTH);
-        // create quit 
+        // create quit
         quit = new Button("Quit");
         quit.onClick(this, "clickedQuit");
         quit.setForegroundColor(Color.red);
@@ -85,89 +84,147 @@ public class GUIWindow {
         vaStats = new Button("Represent VA");
         vaStats.onClick(this, "clickedVA");
         window.addButton(vaStats, WindowSide.SOUTH);
+
+        // Shape array
+        shapes = new Shape[5];
+
+        // Instantiate the stateList
+        this.stateList = stateList;
+
+        // set currentState to null
+        currentState = null;
+
+        textRace = new TextShape[5];
+        textCFR = new TextShape[5];
+
     }
-    
-    public void clickedQuit(Button button)
-    {
+
+
+    public void clickedQuit(Button button) {
         System.exit(0);
     }
-    
-    public void clickedSortAlpha(Button sort)
-    {
-        
+
+
+    public void clickedSortAlpha(Button sort) {
+
+        currentState.callSortAlpha();
+        createHistogram(currentState.getRaceList());
     }
-    
-    public void clickedSortCFR(Button sort)
-    {
-        
+
+
+    public void clickedSortCFR(Button sort) {
+
+        currentState.callSortCFR();
+        createHistogram(currentState.getRaceList());
     }
-    
+
+
     /**
      * 
      * @param button
      */
     public void clickedDC(Button button) {
-        asian = new Shape(50, 50, HISTOGRAM_WIDTH, Color.BLUE);
-        black = new Shape(asian.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
-        latinx = new Shape(black.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
-        other = new Shape(latinx.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
-        white = new Shape(other.getX() + HISTOGRAM_SPACE, 300, HISTOGRAM_WIDTH, Color.BLUE);
-        window.addShape(asian);
-        window.addShape(black);
-        window.addShape(latinx);
-        window.addShape(other);
-        window.addShape(white);
+        State dc = stateList.getEntry(0);
+        currentState = dc;
+        createHistogram(dc.getRaceList());
     }
-    
+
+
     /**
      * Displays Georgia's COVID data
+     * 
      * @param button
      */
-    public void clickedGA(Button button)
-    {
+    public void clickedGA(Button button) {
         State ga = stateList.getEntry(1);
-        update(ga);
+        currentState = ga;
+        createHistogram(ga.getRaceList());
+
     }
-    
+
+
     /**
      * Displays Maryland's COVID data
+     * 
      * @param button
      */
-    public void clickedMD(Button button)
-    {
+    public void clickedMD(Button button) {
         State md = stateList.getEntry(2);
-        update(md);
+        currentState = md;
+        createHistogram(md.getRaceList());
     }
-    
+
+
     /**
      * Displays North Carolina's COVID data
+     * 
      * @param button
      */
-    public void clickedNC(Button button)
-    {
+    public void clickedNC(Button button) {
         State nc = stateList.getEntry(3);
-        update(nc);
+        currentState = nc;
+        createHistogram(nc.getRaceList());
     }
-    
+
+
     /**
      * Displays Tennessee's COVID data
+     * 
      * @param button
      */
-    public void clickedTN(Button button)
-    {
+    public void clickedTN(Button button) {
         State tn = stateList.getEntry(4);
-        update(tn);
+        currentState = tn;
+        createHistogram(tn.getRaceList());
     }
-    
-    public void clickedVA(Button dc)
-    {
+
+
+    /**
+     * Displays Virginia's COVID data
+     * 
+     * @param button
+     */
+    public void clickedVA(Button dc) {
         State va = stateList.getEntry(5);
-        update(va);
+        currentState = va;
+        createHistogram(va.getRaceList());
     }
-    
-    public void update(State state)
-    {
-        
+
+
+    public void createHistogram(LinkedList<Race> raceList) {
+
+        // remove current data from the screen
+
+        Iterator<Race> iter = raceList.iterator();
+        for (int i = 0; i < shapes.length; i++)
+
+        {
+            // removes the shape if it's already on the screen
+            if (shapes[i] != null) {
+                window.removeShape(shapes[i]);
+            }
+
+            Race race = iter.next();
+
+            // fills a race with no CFR value with an "NA"
+            if (race.getCFR() < 0) {
+                shapes[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
+                    + 1), GUIWindow.Y_BASE - 10, "NA");
+            }
+            else {
+                // ATTENTION
+                // Add textRace and textCFR HERE
+
+                // create the histogram
+                shapes[i] = new Shape((window.getGraphPanelWidth() / 6) * (i
+                    + 1), GUIWindow.Y_BASE - (int)((race.getCFR()
+                        * GUIWindow.HEIGHT_FACTOR)), GUIWindow.HISTOGRAM_WIDTH,
+                    (int)(race.getCFR() * GUIWindow.HEIGHT_FACTOR), Color.BLUE);
+
+            }
+            window.addShape(shapes[i]);
+
+        }
+
     }
-    
 }
