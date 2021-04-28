@@ -29,8 +29,10 @@ public class GUIWindow {
     private final static int WIDTH = 500;
     private final static int HEIGHT = 500;
     private final static int HISTOGRAM_WIDTH = 40;
-    private final static int HEIGHT_FACTOR = 5;
+    private final static int HEIGHT_FACTOR = 20;
     private final static int Y_BASE = 300;
+    private final static int CFR_BOX = 350;
+    private final static int RACE_BOX = 320;
     private State currentState;
     private Shape[] shapes;
     private TextShape[] textRace;
@@ -154,6 +156,7 @@ public class GUIWindow {
         createHistogram(md.getRaceList());
     }
 
+
     /**
      * Displays North Carolina's COVID data
      * 
@@ -207,30 +210,39 @@ public class GUIWindow {
             Race race = iter.next();
             // fills a race with no CFR value with an "NA"
             if (race.getCFR() == -1) {
-                textRace[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 320, race.getRace());
-                textCFR[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 350, "NA");
-                shapes[i] = new Shape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), GUIWindow.Y_BASE - (int)((race.getCFR()
-                        * GUIWindow.HEIGHT_FACTOR)), GUIWindow.HISTOGRAM_WIDTH,
-                    (int)(race.getCFR() * GUIWindow.HEIGHT_FACTOR), Color.BLUE);
+                textRace[i] = new TextShape(0, GUIWindow.RACE_BOX, race
+                    .getRace());
+                textCFR[i] = new TextShape(0, GUIWindow.CFR_BOX, "NA");
+
+                shapes[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
+                    + 1), GUIWindow.Y_BASE - textCFR[i].getHeight(), "NA");
+                shapes[i].setX((window.getGraphPanelWidth() / 6) * (i + 1)
+                    - shapes[i].getWidth() / 2);
+
             }
             else {
-                // ATTENTION
+
                 // Add textRace and textCFR HERE
-                textRace[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 320, race.getRace());
-                textCFR[i] = new TextShape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), 350, race.getCFRFormatted() + "%");
+                textRace[i] = new TextShape(0, GUIWindow.RACE_BOX, race
+                    .getRace());
+
+                textCFR[i] = new TextShape(0, GUIWindow.CFR_BOX, race
+                    .getCFRFormatted() + "%");
 
                 // create the histogram
                 shapes[i] = new Shape((window.getGraphPanelWidth() / 6) * (i
-                    + 1), GUIWindow.Y_BASE - (int)((race.getCFR()
-                        * GUIWindow.HEIGHT_FACTOR)), GUIWindow.HISTOGRAM_WIDTH,
-                    (int)(race.getCFR() * GUIWindow.HEIGHT_FACTOR), Color.BLUE);
+                    + 1) - (GUIWindow.HISTOGRAM_WIDTH / 2), GUIWindow.Y_BASE
+                        - (int)((race.getCFR() * GUIWindow.HEIGHT_FACTOR)),
+                    GUIWindow.HISTOGRAM_WIDTH, (int)(race.getCFR()
+                        * GUIWindow.HEIGHT_FACTOR), Color.BLUE);
 
             }
+            textRace[i].setX((window.getGraphPanelWidth() / 6) * (i + 1)
+                - textRace[i].getWidth() / 2);
+
+            textCFR[i].setX((window.getGraphPanelWidth() / 6) * (i + 1)
+                - textCFR[i].getWidth() / 2);
+
             window.addShape(shapes[i]);
             window.addShape(textRace[i]);
             window.addShape(textCFR[i]);
