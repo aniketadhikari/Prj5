@@ -26,8 +26,8 @@ public class LinkedList<T> implements Iterable<T> {
      *
      * @param <E>
      *            This is the type of object that this class will store
-     * @author Sami Al Jadir (sami98)
-     * @version 04/19/2021 v1
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
      */
     private static class Node<E> {
         private Node<E> next;
@@ -191,9 +191,11 @@ public class LinkedList<T> implements Iterable<T> {
 
 
     /**
+     * sorting method which sorts based on the comparator
+     * that is passed in as the argument 
      * 
-     * @param comp
-     * @return
+     * @param comp is the criteria for which the linked list
+     *        is sorted
      */
     public void sort(Comparator<T> comp) {
         if (size > 1) {
@@ -210,6 +212,14 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
+    /**
+     * helper method which inserts nodes into the linked list 
+     * 
+     * @param nodeToInsert is the node being inserted into the
+     *        linked list
+     * @param comp is the comparator we pass in to give our linked list
+     *        criteria to sort by
+     */
     private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp) {
         Node<T> currentNode = head;
         Node<T> previousNode = null;
@@ -271,10 +281,12 @@ public class LinkedList<T> implements Iterable<T> {
 
         return new LinkedListIterator<T>();
     }
-
     /**
+     * Iterating class which allows us to parse 
+     * through the linked list
      * 
-     * @author Aniket Adhikari
+     * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+     * @version 2021.04.27
      *
      * @param <A>
      *            the type of elements returned by this

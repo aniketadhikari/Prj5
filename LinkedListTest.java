@@ -13,7 +13,6 @@ import student.TestCase;
 public class LinkedListTest extends TestCase {
 
     private LinkedList<String> l1;
-
     private Iterator<String> iter;
 
     /**
@@ -23,7 +22,6 @@ public class LinkedListTest extends TestCase {
         l1 = new LinkedList<String>();
         iter = l1.iterator();
     }
-
 
     /**
      * Tests add method

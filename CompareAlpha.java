@@ -14,6 +14,8 @@ package prj5;
  */
 public class CompareAlpha<T> implements Comparator<T> {
     /**
+     * comparing method for races which compares the 
+     * name of races 
      * 
      * @param obj1
      *            is the object who's name is being compared

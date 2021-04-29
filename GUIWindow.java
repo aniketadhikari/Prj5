@@ -9,9 +9,13 @@ import cs2.Window;
 import cs2.WindowSide;
 
 /**
+ * GUIWindow creates the front-end of the project, creating 
+ * a visual representation of the COVID Tracker. To use this
+ * class, we create a window with a linked list of states and
+ * races associated with each state.
  * 
- * @author Aniket Adhikari
- * @version 04.26.2021
+ * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+ * @version 2021.04.27
  *
  */
 public class GUIWindow {
@@ -42,6 +46,9 @@ public class GUIWindow {
      * Creates a GUI Window consisting of sorting buttons,
      * a quit button, and buttons to view COVID statistics for
      * each state
+     * 
+     * @param stateList is the linked list of states that
+     *        will be displayed in the COVID tracker 
      */
     public GUIWindow(LinkedList<State> stateList) {
 
@@ -102,28 +109,48 @@ public class GUIWindow {
     }
 
 
+    /**
+     * allows for the user to exit and quit 
+     * out of the window 
+     * 
+     * @param button is what the user clicks to
+     * exit out of the window
+     */
     public void clickedQuit(Button button) {
         System.exit(0);
     }
 
-
+    /**
+     * allows for the user to sort the races of 
+     * a state alphabetically 
+     * 
+     * @param sort is what the user clicks to 
+     * sort the races of a state alphabetically
+     */
     public void clickedSortAlpha(Button sort) {
 
         currentState.callSortAlpha();
         createHistogram(currentState.getRaceList());
     }
 
-
+    /**
+     * allows for the user to sort the races of 
+     * a state by the CFR of races in the state
+     * 
+     * @param sort is what the user clicks to
+     * sort the races of a state by the races CFR 
+     */
     public void clickedSortCFR(Button sort) {
 
         currentState.callSortCFR();
         createHistogram(currentState.getRaceList());
     }
 
-
     /**
+     * Displays DC's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for DC
      */
     public void clickedDC(Button button) {
         State dc = stateList.getEntry(0);
@@ -135,7 +162,8 @@ public class GUIWindow {
     /**
      * Displays Georgia's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for Georgia
      */
     public void clickedGA(Button button) {
         State ga = stateList.getEntry(1);
@@ -148,7 +176,8 @@ public class GUIWindow {
     /**
      * Displays Maryland's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for Maryland
      */
     public void clickedMD(Button button) {
         State md = stateList.getEntry(2);
@@ -160,7 +189,8 @@ public class GUIWindow {
     /**
      * Displays North Carolina's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for North Carolina
      */
     public void clickedNC(Button button) {
         State nc = stateList.getEntry(3);
@@ -172,7 +202,8 @@ public class GUIWindow {
     /**
      * Displays Tennessee's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for Tennessee
      */
     public void clickedTN(Button button) {
         State tn = stateList.getEntry(4);
@@ -184,7 +215,8 @@ public class GUIWindow {
     /**
      * Displays Virginia's COVID data
      * 
-     * @param button
+     * @param button is what the user clicks to 
+     *        display the COVID data for Virginia
      */
     public void clickedVA(Button dc) {
         State va = stateList.getEntry(5);

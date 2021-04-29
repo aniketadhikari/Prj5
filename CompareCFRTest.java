@@ -27,17 +27,19 @@ public class CompareCFRTest extends TestCase {
 
     /**
      * tests the compare method for when we are
-     * comparing the CFRs of two two races where
-     * the 1st parameter has a greater CFR
+     * comparing the CFRs of two races where
+     * the 1st parameter has a lesser CFR
      */
     public void testComparePositive() {
         assertEquals(-1, cfr.compare(alien, human));
 
     }
 
-
     /**
-     * Test for r1 > r2
+     * Test the compare method for when we are 
+     * comparing the CFRs of two races where the 
+     * 1st parameter has a lesser CFR but they
+     * both have the same names
      */
     public void testR1GreaterR2() {
         Race r1 = new Race("r1", 99, 100);

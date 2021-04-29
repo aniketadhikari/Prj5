@@ -3,14 +3,14 @@ package prj5;
 import java.util.Iterator;
 
 /**
- * 
- * 
  * The state in which we are measuring the affects
  * COVID has had on different segments of the
  * population.
  * 
  * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
  * @version 2021.04.27
+ * 
+ *          
  *
  */
 public class State {

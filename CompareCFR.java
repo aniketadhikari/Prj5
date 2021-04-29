@@ -15,6 +15,9 @@ package prj5;
 public class CompareCFR<T> implements Comparator<T> {
 
     /**
+     * comparing method for races which compares the 
+     * CFR values of races 
+     * 
      * @param obj1
      *            is the object who's CFR is being compared
      *            to obj2
@@ -32,7 +35,6 @@ public class CompareCFR<T> implements Comparator<T> {
             throw new IllegalArgumentException("One of the parameters"
                 + "has not been initialized");
         }
-
         Race race1 = (Race)obj1;
         Race race2 = (Race)obj2;
         double r1CFR = race1.getCFR();
@@ -45,7 +47,6 @@ public class CompareCFR<T> implements Comparator<T> {
             return 1;
         }
         return -1;
-
     }
 
 }

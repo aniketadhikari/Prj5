@@ -121,7 +121,7 @@ public class Race {
 
 
     /**
-     * * Converts race into the string format: "asian: 5407 cases, 4.7% CFR"
+     * Converts race into the string format: "asian: 5407 cases, 4.7% CFR"
      * 
      * @return String format of Race
      */

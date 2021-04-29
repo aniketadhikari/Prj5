@@ -46,9 +46,8 @@ public class DataReader {
      * 
      * @param fileName
      *            name of file
-     * @return linkedlist of states
+     * @return linked list of states
      */
-    @SuppressWarnings("unused")
     private LinkedList<State> readDataFile(String fileName)
         throws FileNotFoundException {
 
