@@ -11,7 +11,6 @@ import student.TestCase;
  * @version 2021.04.27
  */
 public class LinkedListTest extends TestCase {
-
     private LinkedList<String> l1;
     private Iterator<String> iter;
 
@@ -23,11 +22,11 @@ public class LinkedListTest extends TestCase {
         iter = l1.iterator();
     }
 
+
     /**
      * Tests add method
      */
     public void testAdd() {
-
         // test adding null string
         Exception e = null;
         String nothing = null;
@@ -38,18 +37,13 @@ public class LinkedListTest extends TestCase {
             e = exception;
         }
         assertTrue(e instanceof IllegalArgumentException);
-
         // test adding one string
         assertEquals(l1.size(), 0);
         assertEquals(l1.toString(), "{}");
-
         l1.add("asian");
         assertEquals(l1.size(), 1);
-
         assertEquals(l1.toString(), "{asian}");
-
         // test adding second item
-
         l1.add("white");
         assertEquals(l1.size(), 2);
 
@@ -149,9 +143,7 @@ public class LinkedListTest extends TestCase {
         sortedAlpha.append("E: 500 cases, 60% CFR}");
         races.sort(raceCompare);
         assertEquals(races.toString(), sortedAlpha.toString());
-
         // when empty
-
         LinkedList<Race> races2 = new LinkedList<Race>();
         races2.sort(raceCompare);
         assertEquals(races2.toString(), "{}");

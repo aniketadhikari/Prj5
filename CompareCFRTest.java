@@ -35,9 +35,10 @@ public class CompareCFRTest extends TestCase {
 
     }
 
+
     /**
-     * Test the compare method for when we are 
-     * comparing the CFRs of two races where the 
+     * Test the compare method for when we are
+     * comparing the CFRs of two races where the
      * 1st parameter has a lesser CFR but they
      * both have the same names
      */

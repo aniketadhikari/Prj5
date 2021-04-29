@@ -26,8 +26,9 @@ public class LinkedList<T> implements Iterable<T> {
      *
      * @param <E>
      *            This is the type of object that this class will store
- * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
- * @version 2021.04.27
+     * 
+     * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
+     * @version 2021.04.27
      */
     private static class Node<E> {
         private Node<E> next;
@@ -92,6 +93,9 @@ public class LinkedList<T> implements Iterable<T> {
      */
     private Node<T> tail;
 
+    /**
+     * Creates a linked list data structure
+     */
     public LinkedList() {
         init();
     }
@@ -192,10 +196,11 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * sorting method which sorts based on the comparator
-     * that is passed in as the argument 
+     * that is passed in as the argument
      * 
-     * @param comp is the criteria for which the linked list
-     *        is sorted
+     * @param comp
+     *            is the criteria for which the linked list
+     *            is sorted
      */
     public void sort(Comparator<T> comp) {
         if (size > 1) {
@@ -213,12 +218,14 @@ public class LinkedList<T> implements Iterable<T> {
 
 
     /**
-     * helper method which inserts nodes into the linked list 
+     * helper method which inserts nodes into the linked list
      * 
-     * @param nodeToInsert is the node being inserted into the
-     *        linked list
-     * @param comp is the comparator we pass in to give our linked list
-     *        criteria to sort by
+     * @param nodeToInsert
+     *            is the node being inserted into the
+     *            linked list
+     * @param comp
+     *            is the comparator we pass in to give our linked list
+     *            criteria to sort by
      */
     private void insertInOrder(Node<T> nodeToInsert, Comparator<T> comp) {
         Node<T> currentNode = head;
@@ -281,8 +288,9 @@ public class LinkedList<T> implements Iterable<T> {
 
         return new LinkedListIterator<T>();
     }
+
     /**
-     * Iterating class which allows us to parse 
+     * Iterating class which allows us to parse
      * through the linked list
      * 
      * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir

@@ -12,41 +12,36 @@ package prj5;
  *            the type of objects that may be
  *            compared by this comparator
  */
-public class CompareAlpha<T> implements Comparator<T> {
+public class CompareAlpha<T> implements Comparator<Race> {
     /**
-     * comparing method for races which compares the 
-     * name of races 
+     * comparing method for races which compares the
+     * name of races
      * 
-     * @param obj1
-     *            is the object who's name is being compared
-     *            alphabetically to obj2
-     * @param obj2
-     *            is the object who's name is being compared
-     *            alphabetically to obj1
-     * @return -1 if, alphabetically, the first object's name
-     *         comes before the second, 1 if the second object's
+     * @param race1
+     *            is the race object who's name is being compared
+     *            alphabetically to race2
+     * @param race2
+     *            is the race object who's name is being compared
+     *            alphabetically to race2
+     * @return -1 if, alphabetically, the first race's name
+     *         comes before the second, 1 if the second race's
      *         name comes before the first, and 0 if they have
      *         the same name
      */
-    public int compare(T obj1, T obj2) {
-        if (obj1 == null || obj2 == null) {
+    public int compare(Race race1, Race race2) {
+        if (race1 == null || race2 == null) {
             throw new IllegalArgumentException("One of the parameters"
                 + "has not been initialized");
         }
-        Race race1 = (Race)obj1;
-        Race race2 = (Race)obj2;
         String name1 = race1.getRace().toLowerCase();
         String name2 = race2.getRace().toLowerCase();
         int val = name1.compareToIgnoreCase(name2);
-        // name1 comes after name2
         if (val > 0) {
             return 1;
         }
-        // name1 comes before name2
         else if (val < 0) {
             return -1;
         }
-        // name is the same
         return 0;
 
     }

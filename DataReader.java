@@ -16,7 +16,9 @@ public class DataReader {
     private LinkedList<State> stateList;
 
     /**
-     * Builds DataReader
+     * Builds a DataReader object, which reads through
+     * the file passed in as the argument and created a
+     * linked list of states
      * 
      * @param fileName
      *            name of file
@@ -32,9 +34,9 @@ public class DataReader {
 
 
     /**
-     * Returns linkedlist of states
+     * Getter method for the linked list of states
      * 
-     * @return state linkedlist
+     * @return a linked list of states
      */
     public LinkedList<State> getState() {
         return stateList;
@@ -46,23 +48,17 @@ public class DataReader {
      * 
      * @param fileName
      *            name of file
-     * @return linked list of states
+     * @return linked list of states that were created
+     *         from the file passed in as the argument
      */
     private LinkedList<State> readDataFile(String fileName)
         throws FileNotFoundException {
-
         File input = new File(fileName);
         Scanner scan = new Scanner(input);
-
-        // to ignore first line
         scan.nextLine();
-
         while (scan.hasNext()) {
             String[] parsedLine = scan.nextLine().split(", *");
-
             int[] data = new int[parsedLine.length];
-
-            // parsing the data
             for (int j = 1; j < parsedLine.length; j++) {
                 if (parsedLine[j].equals("NA")) {
                     data[j] = -1;

@@ -10,8 +10,6 @@ import java.util.Iterator;
  * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
  * @version 2021.04.27
  * 
- *          
- *
  */
 public class State {
 
@@ -22,7 +20,7 @@ public class State {
      * creates a State object
      * 
      * @param raceList
-     *            linkedlist of race
+     *            linked list of race
      * @param stateName
      *            name of state
      */

@@ -67,7 +67,7 @@ public class CompareAlphaTest extends TestCase {
 
     /**
      * tests the compare method when the first parameter
-     * is null
+     * is null, causing an exception to be thrown
      */
     public void testCompareFirstNull() {
         Exception thrown = null;
@@ -85,7 +85,7 @@ public class CompareAlphaTest extends TestCase {
 
     /**
      * tests the compare method when the first parameter
-     * is null
+     * is null, causing an exception to be thrown
      */
     public void testCompareSecondNull() {
         Exception thrown = null;

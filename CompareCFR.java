@@ -12,31 +12,29 @@ package prj5;
  *            the type of objects that may be
  *            compared by this comparator
  */
-public class CompareCFR<T> implements Comparator<T> {
+public class CompareCFR<T> implements Comparator<Race> {
 
     /**
-     * comparing method for races which compares the 
-     * CFR values of races 
+     * comparing method for races which compares the
+     * CFR values of races
      * 
-     * @param obj1
-     *            is the object who's CFR is being compared
-     *            to obj2
-     * @param obj2
-     *            is the object who's CFR is being compared
-     *            to obj1
-     * @return -1 if the first object's CFR is less than the second
-     *         object's CFR, 1 if the first object's
-     *         CFR is more than the second object's CFR,
+     * @param race1
+     *            is the race object who's CFR is being compared
+     *            to race2
+     * @param race2
+     *            is the race object who's CFR is being compared
+     *            to race1
+     * @return -1 if the first race's CFR is less than the second
+     *         race's CFR, 1 if the first race's
+     *         CFR is more than the second race's CFR,
      *         and 0 if they have the same CFR
      */
     @Override
-    public int compare(T obj1, T obj2) {
-        if (obj1 == null || obj2 == null) {
+    public int compare(Race race1, Race race2) {
+        if (race1 == null || race2 == null) {
             throw new IllegalArgumentException("One of the parameters"
                 + "has not been initialized");
         }
-        Race race1 = (Race)obj1;
-        Race race2 = (Race)obj2;
         double r1CFR = race1.getCFR();
         double r2CFR = race2.getCFR();
 

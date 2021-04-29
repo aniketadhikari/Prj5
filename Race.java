@@ -16,8 +16,8 @@ public class Race {
     private int numPositive;
 
     /**
-     * Builds new Race object with the name, number of covid-19 deaths, and
-     * number of covid-19 positive cases
+     * Builds new Race object with the name, number of COVID-19 deaths, and
+     * number of COVID-19 positive cases
      * 
      * @param name
      *            of race

@@ -7,13 +7,13 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 /**
- * Project Runner
+ * Project runner to read the file input and create
+ * the window for the data 
  * 
  * @author Aniket Adhikari, Jenny Tran, Sami Al Jadir
  * @version 2021.04.27
  */
 public class Input {
-
     /**
      * Main method to run the project
      * 
